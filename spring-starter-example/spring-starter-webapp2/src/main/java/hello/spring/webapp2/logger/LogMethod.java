@@ -1,0 +1,36 @@
+package hello.spring.webapp2.logger;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * メソッドのロギングを有効にするためのアノテーション
+ * このアノテーションが付与されたメソッドは、実行時に自動的にログが記録される
+ * （スターターを使用せず、アプリケーション内で直接定義）
+ */
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface LogMethod {
+
+    String value() default "";
+
+    /**
+     * パラメータをログに含めるかどうか
+     * @return パラメータをログに含める場合はtrue
+     */
+    boolean parameters() default true;
+
+    /**
+     * 戻り値をログに含めるかどうか
+     * @return 戻り値をログに含める場合はtrue
+     */
+    boolean returnValue() default true;
+
+    /**
+     * 実行時間をログに含めるかどうか
+     * @return 実行時間をログに含める場合はtrue
+     */
+    boolean executionTime() default true;
+}
